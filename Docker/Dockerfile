@@ -4,8 +4,8 @@ WORKDIR /app
 
 COPY .mvnw/ .mvnw
 COPY mvnw pom.xml ./
-RUN ./mvnw dependency:resolve
+RUN ./mvnw clean install
 
-COPY src ./src
+COPY ./target/Demo-0.0.1-SNAPSHOT.jar app.jar
 
-CMD ["./mvnw", "spring-boot:run"]
+ENTRYPOINT ["java","-jar","/app.jar"]
